@@ -6,7 +6,7 @@ export interface LocalizedText {
   de: string;
 }
 
-export const content: Record<Language, {
+export type SiteContent = Record<Language, {
   navigation: Record<'home' | 'about' | 'appearances' | 'gallery' | 'book', string>;
   hero: { eyebrow: string; title: string; titleAccent: string; introduction: string; roles: string; book: string; appearances: string };
   stats: { events: string; people: string };
@@ -14,7 +14,9 @@ export const content: Record<Language, {
   gallery: { eyebrow: string; title: string; hint: string; previous: string; next: string; close: string };
   appearances: { eyebrow: string; title: string; body: string; explore: string; close: string; date: string; location: string; role: string };
   contact: { eyebrow: string; title: string; body: string; book: string; formTitle: string; fields: Record<'name' | 'organisation' | 'email' | 'phone' | 'date' | 'location' | 'type' | 'message', string>; send: string };
-}> = {
+}>;
+
+export const content: SiteContent = {
   fr: {
     navigation: { home: 'Accueil', about: 'À propos', appearances: 'Événements', gallery: 'Galerie', book: 'Réserver Eddy' },
     hero: { eyebrow: 'Animateur · Modérateur · Speaker · Maître de cérémonie', title: 'Bonjour, je suis', titleAccent: 'Eddy Gaetan.', introduction: 'J’apporte de la présence, de l’énergie et du sens à chaque scène.', roles: 'Je crée le lien entre le programme, les intervenants et la salle.', book: 'Réserver Eddy 🎤', appearances: 'Voir les événements' },
@@ -44,7 +46,17 @@ export const content: Record<Language, {
   },
 };
 
-export const siteSettings = {
+export interface SiteSettings {
+  personName: string;
+  email: string;
+  phone: string;
+  phoneHref: string;
+  social: { label: string; href: string }[];
+  stats: { events: number; people: number };
+  gallery: { src: string; alt: string }[];
+}
+
+export const siteSettings: SiteSettings = {
   personName: 'Eddy Gaetan',
   email: 'hello@eddy-host.com',
   phone: '+49 176 766 42953',

@@ -18,6 +18,21 @@ npm run build    # production build
 npm run lint
 ```
 
+## Administration du contenu
+
+L’éditeur est disponible sur `/admin` (par exemple `http://localhost:3000/admin`).
+
+1. Créez un fichier `.env.local` à partir de `.env.example`.
+2. Définissez une valeur longue et unique pour `ADMIN_PASSWORD`.
+3. Relancez le serveur de développement puis connectez-vous sur `/admin`.
+
+L’éditeur regroupe les textes français, anglais et allemands, les KPI, les coordonnées,
+les liens sociaux et la galerie. Les modifications sont enregistrées dans
+`.data/site-content.json` et sont visibles sur la page publique sans reconstruction.
+
+Pour un hébergement serverless, remplacez ce stockage local par une base de données ou
+un CMS persistant avant la mise en production.
+
 Set the public URL for correct canonical/OG/sitemap links:
 
 ```bash
