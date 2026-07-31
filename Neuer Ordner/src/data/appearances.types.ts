@@ -54,6 +54,8 @@ export interface EventAppearance {
   title: string;
   type: EventType;
   role: EventRole;
+  /** Venue, hotel, theatre or precise event location. */
+  venue?: string;
   city: string;
   country: string;
   /** ISO date (YYYY-MM-DD) for correct sorting & <time> semantics. */
@@ -64,6 +66,8 @@ export interface EventAppearance {
   audience?: number;
   /** Marks the hero / featured appearance. */
   featured?: boolean;
+  /** Hidden events remain in administration but are excluded from the public site. */
+  published?: boolean;
   cover: EventMedia;
   gallery?: EventMedia[];
 }

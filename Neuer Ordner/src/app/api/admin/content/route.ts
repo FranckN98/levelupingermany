@@ -16,7 +16,7 @@ export async function GET(request: NextRequest) {
 export async function PUT(request: NextRequest) {
   if (!authorised(request)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   const data = await request.json() as SiteData;
-  if (!data.content || !data.siteSettings) return NextResponse.json({ error: 'Invalid content payload' }, { status: 400 });
+  if (!data.content || !data.siteSettings || !Array.isArray(data.events)) return NextResponse.json({ error: 'Invalid content payload' }, { status: 400 });
   await writeSiteData(data);
   return NextResponse.json({ ok: true });
 }
