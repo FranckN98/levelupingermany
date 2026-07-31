@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { FormEvent, useEffect, useRef, useState } from 'react';
-import { FaInstagram, FaLinkedinIn, FaSnapchatGhost, FaTiktok } from 'react-icons/fa6';
+import { FaInstagram, FaLinkedinIn, FaSnapchat, FaTiktok } from 'react-icons/fa6';
 import {
   ArrowLeft,
   ArrowRight,
@@ -57,7 +57,7 @@ function SocialIcon({ label, className = 'h-4 w-4' }: { label: string; className
   if (label === 'Instagram') return <FaInstagram aria-hidden className={className} />;
   if (label === 'TikTok') return <FaTiktok aria-hidden className={className} />;
   if (label === 'LinkedIn') return <FaLinkedinIn aria-hidden className={className} />;
-  if (label === 'Snapchat') return <FaSnapchatGhost aria-hidden className={className} />;
+  if (label === 'Snapchat') return <FaSnapchat aria-hidden className={className} />;
   return <TikTokIcon className={className} />;
 }
 
