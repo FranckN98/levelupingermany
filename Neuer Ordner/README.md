@@ -33,6 +33,15 @@ les liens sociaux et la galerie. Les modifications sont enregistrées dans
 Pour un hébergement serverless, remplacez ce stockage local par une base de données ou
 un CMS persistant avant la mise en production.
 
+### Déploiement Vercel
+
+L’application utilise automatiquement Vercel Blob quand `BLOB_READ_WRITE_TOKEN` est
+configuré. Dans le tableau de bord Vercel, créez un Blob Store puis associez-le au projet :
+Vercel ajoute cette variable d’environnement automatiquement. Ajoutez également
+`ADMIN_PASSWORD` dans les variables d’environnement Production, Preview et Development.
+Les contenus et les images ajoutés depuis `/admin` seront alors persistants entre les
+déploiements.
+
 Set the public URL for correct canonical/OG/sitemap links:
 
 ```bash
