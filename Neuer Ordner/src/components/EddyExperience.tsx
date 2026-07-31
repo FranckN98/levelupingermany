@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { FormEvent, useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { FaInstagram, FaLinkedinIn, FaSnapchat, FaTiktok } from 'react-icons/fa6';
 import {
   ArrowLeft,
@@ -61,8 +62,9 @@ function SocialIcon({ label, className = 'h-4 w-4' }: { label: string; className
   return <TikTokIcon className={className} />;
 }
 
-export default function EddyExperience() {
-  const [language, setLanguage] = useState<Language>('en');
+export default function EddyExperience({ initialLanguage = 'fr' }: { initialLanguage?: Language }) {
+  const router = useRouter();
+  const [language, setLanguage] = useState<Language>(initialLanguage);
   const [siteData, setSiteData] = useState<{ content: SiteContent; siteSettings: SiteSettings; events: EventAppearance[] }>({ content, siteSettings, events: sortedAppearances });
   const [menuOpen, setMenuOpen] = useState(false);
   const [galleryIndex, setGalleryIndex] = useState(0);
@@ -80,6 +82,15 @@ export default function EddyExperience() {
       .then((data) => { if (data?.content && data?.siteSettings && Array.isArray(data.events)) setSiteData(data); })
       .catch(() => undefined);
   }, []);
+
+  useEffect(() => {
+    setLanguage(initialLanguage);
+  }, [initialLanguage]);
+
+  const changeLanguage = (nextLanguage: Language) => {
+    setLanguage(nextLanguage);
+    router.push(`/${nextLanguage}`);
+  };
 
   const navigateGallery = (direction: 1 | -1) => {
     setGalleryIndex((current) => (current + direction + settings.gallery.length) % settings.gallery.length);
@@ -124,7 +135,7 @@ export default function EddyExperience() {
           <div className="flex items-center gap-3">
             <div className="relative hidden border border-white/10 bg-white/5 sm:block">
               <label className="sr-only" htmlFor="language">Language</label>
-              <select id="language" value={language} onChange={(event) => setLanguage(event.target.value as Language)} className="appearance-none bg-transparent py-2 pl-3 pr-8 text-xs font-bold tracking-[0.12em] text-white outline-none">
+              <select id="language" value={language} onChange={(event) => changeLanguage(event.target.value as Language)} className="appearance-none bg-transparent py-2 pl-3 pr-8 text-xs font-bold tracking-[0.12em] text-white outline-none">
                 {languages.map((item) => <option key={item.value} value={item.value} className="bg-midnight">{item.label}</option>)}
               </select>
               <ChevronDown aria-hidden className="pointer-events-none absolute right-2 top-2.5 h-3 w-3 text-electric" />
