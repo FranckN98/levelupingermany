@@ -52,7 +52,7 @@ export default function AdminConsole() {
   }
   function addEvent() {
     const slug = `event-${Date.now()}`;
-    const item: EventAppearance = { slug, title: 'Nouvel événement', type: 'Conference', role: 'Moderator', venue: '', city: '', country: '', date: new Date().toISOString().slice(0, 10), impact: '', audience: 0, published: false, cover: { src: '/appearances/eddy-hero.jpg', alt: 'Eddy Gaetan on stage', width: 1600, height: 900, moment: 'on-stage' } };
+    const item: EventAppearance = { slug, title: 'Nouvel événement', type: 'Conference', role: 'Moderator', venue: '', city: '', country: '', date: new Date().toISOString().slice(0, 10), impact: '', audience: 0, published: true, cover: { src: '/appearances/eddy-hero.jpg', alt: 'Eddy Gaetan on stage', width: 1600, height: 900, moment: 'on-stage' } };
     update((site) => ({ ...site, events: [item, ...site.events] })); setSelectedEvent(slug);
   }
   function removeEvent(slug: string) { update((site) => ({ ...site, events: site.events.filter((item) => item.slug !== slug) })); setSelectedEvent(null); }
