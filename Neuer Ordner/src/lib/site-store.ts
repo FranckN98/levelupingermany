@@ -30,7 +30,18 @@ export async function readSiteData(): Promise<SiteData> {
   }
   try {
     const saved = JSON.parse(await readFile(storePath, 'utf8')) as Partial<SiteData>;
-    return { ...defaults(), ...saved, events: saved.events ?? appearances };
+    const base = defaults();
+    const savedSocial = saved.siteSettings?.social ?? [];
+    const social = [
+      ...savedSocial,
+      ...base.siteSettings.social.filter((item) => !savedSocial.some((savedItem) => savedItem.label === item.label)),
+    ];
+    return {
+      ...base,
+      ...saved,
+      siteSettings: { ...base.siteSettings, ...saved.siteSettings, social },
+      events: saved.events ?? appearances,
+    };
   } catch {
     return defaults();
   }

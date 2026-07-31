@@ -51,6 +51,7 @@ export interface SiteSettings {
   email: string;
   phone: string;
   phoneHref: string;
+  whatsappHref: string;
   social: { label: string; href: string }[];
   stats: { events: number; people: number };
   gallery: { src: string; alt: string }[];
@@ -61,10 +62,12 @@ export const siteSettings: SiteSettings = {
   email: 'hello@eddy-host.com',
   phone: '+49 176 766 42953',
   phoneHref: 'tel:+4917676642953',
+  whatsappHref: 'https://wa.me/4917676642953',
   social: [
     { label: 'Instagram', href: 'https://www.instagram.com/' },
     { label: 'TikTok', href: 'https://www.tiktok.com/' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/' },
+    { label: 'Snapchat', href: 'https://www.snapchat.com/' },
   ],
   stats: { events: 50, people: 10000 },
   gallery: [
