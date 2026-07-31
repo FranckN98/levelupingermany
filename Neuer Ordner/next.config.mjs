@@ -6,6 +6,7 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
       { protocol: 'https', hostname: 'images.unsplash.com' },
+      { protocol: 'https', hostname: '**.public.blob.vercel-storage.com' },
       // Placeholder photography host — swap for real assets in /public later.
       { protocol: 'https', hostname: 'picsum.photos' },
     ],
