@@ -3,18 +3,20 @@ import path from 'node:path';
 import { list, put } from '@vercel/blob';
 import { appearances } from '@/data/appearances';
 import type { EventAppearance } from '@/data/appearances.types';
+import { defaultProfileLinks, type ProfileLink } from '@/data/links.types';
 import { content, siteSettings, type SiteContent, type SiteSettings } from '@/data/site-content';
 
 export interface SiteData {
   content: SiteContent;
   siteSettings: SiteSettings;
   events: EventAppearance[];
+  links: ProfileLink[];
 }
 
 const storePath = path.join(process.cwd(), '.data', 'site-content.json');
 const blobPathname = 'cms/site-content.json';
 
-const defaults = (): SiteData => JSON.parse(JSON.stringify({ content, siteSettings, events: appearances }));
+const defaults = (): SiteData => JSON.parse(JSON.stringify({ content, siteSettings, events: appearances, links: defaultProfileLinks }));
 
 export async function readSiteData(): Promise<SiteData> {
   if (process.env.BLOB_READ_WRITE_TOKEN) {
@@ -41,6 +43,7 @@ export async function readSiteData(): Promise<SiteData> {
       ...saved,
       siteSettings: { ...base.siteSettings, ...saved.siteSettings, social },
       events: saved.events ?? appearances,
+      links: saved.links ?? defaultProfileLinks,
     };
   } catch {
     return defaults();
